@@ -1,14 +1,17 @@
-
-var startBtn = document.querySelector("#start");
-var timerEl = document.querySelector("#timer");
-var containerEl = document.querySelector("#container");
-var info_box = document.querySelector("#info_box")
-var start = document.querySelector("#start")
+var startBtn = document.querySelector(".start");
+var timerEl = document.querySelector(".timer");
+var timerInterval;
+var containerEl = document.querySelector(".container");
+var info_box = document.querySelector(".info_box");
+var start = document.querySelector(".start");
 var index = 0;
-var interval = 1000;
+var interval = 100;
 var timer = 60;
+var continueBtn = document.querySelector(".restart");
 var currentQuestionIndex = 0;
-// var userScore = 0;
+var startPageEl = document.querySelector(".start-page");
+var score = 0;
+var highscore = 0;
 
 var questions = [
   {
@@ -38,128 +41,107 @@ var questions = [
   },
   {
     question: "How do you call a function named 'myFunction'?",
-    options: ["call function myFunction()", "call myFunction()", "myFunction()", "call myFunction{}"],
+    options: [
+      "call function myFunction()",
+      "call myFunction()",
+      "myFunction()",
+      "call myFunction{}",
+    ],
     answer: "myFunction()",
   },
 ];
 
-
-
 function gameOver() {
-  console.log('gameOver');
-  containerEl.innerHTML = '';
-  var header = document.createElement('h2');
-  header.textContent = 'The Game is OVER!';
+  clearInterval(timerInterval);
+  console.log("gameOver");
+  containerEl.innerHTML = "";
+  var header = document.createElement("h2");
+  header.textContent = "The Game is OVER!";
   containerEl.appendChild(header);
-  var formEl = document.createElement('form');
-  var inputEl = document.createElement('input');
-  var buttonEl = document.createElement('button');
-  buttonEl.textContent = 'Submit';
-  buttonEl.type = 'submit';
-  var pEl = document.createElement('p');
+  var formEl = document.createElement("form");
+  var inputEl = document.createElement("input");
+  var buttonEl = document.createElement("button");
+  buttonEl.textContent = "Submit";
+  buttonEl.type = "submit";
+  var pEl = document.createElement("p");
   pEl.textContent = "Your score is: " + timer;
 
-
-  inputEl.type = 'text';
-  inputEl.placeholder = 'Enter your initials';
-  formEl.appendChild(pEl);
-  formEl.appendChild(inputEl);
-  formEl.appendChild(buttonEl);
-  document.body.appendChild(formEl);
-  containerEl.appendChild(formEl);
-  localStorage.setItem('score', JSON.stringify(pEl))
-  localStorage.setItem('form', JSON.stringify(formEl));
-  localStorage.setItem('input', JSON.stringify(inputEl));
-  formEl.addEventListener('click', formEl);
-  inputEl.addEventListener('click', inputEl);
-  // pEl.addEventListener('click', JSON.stringify(pEl));
-  // info_box.addEventListener('click', info_box)
-  //lookup how to save an object in local storage
-  //your object needs to be the users initial and their score
-  //when you visit the high scores page, you should see any previous scores that we're saved in local storage
-  //Or if there aren't any previous scores, the high score page should just be empty
-  // lookup how to add an event listener to the form button
-  //when the form submit button is clicked, then that current score is saved in local storage
-
+  inputEl.type = "text";
+  inputEl.placeholder = "Enter your initials";
 }
 
+function startGame() {
+  timerInterval = setInterval(timeCountdown, 1000);
+  timerEl.textContent = timer;
+  info_box.classList.remove("hide");
+}
 
+continueBtn.addEventListener("click", function () {
+  startPageEl.setAttribute("class", "hide");
+  info_box.setAttribute("class", "hide");
+  containerEl.classList.remove("hide");
 
-
+  renderCurrentQuestion();
+});
 
 function renderCurrentQuestion() {
-timeCountdown();
+  if (currentQuestionIndex > 4) {
+    gameOver();
+    return;
+  }
 
-if (currentQuestionIndex > 2) { 
-gameOver()
-return;
-}
-
-  containerEl.innerHTML = '';
+  containerEl.innerHTML = "";
   var currentQuestions = questions[currentQuestionIndex];
 
-  var header = document.createElement('h2');
+  var header = document.createElement("h2");
   header.textContent = currentQuestions.question;
   containerEl.appendChild(header);
 
-  var ulEl = document.createElement('ul');
+  var ulEl = document.createElement("ul");
 
   for (var i = 0; i < currentQuestions.options.length; i++) {
-    var liEl = document.createElement('li');
+    var liEl = document.createElement("li");
     liEl.textContent = currentQuestions.options[i];
     ulEl.appendChild(liEl);
   }
   containerEl.appendChild(ulEl);
 }
-startBtn.addEventListener('click', renderCurrentQuestion);
-
-
-
-  
+startBtn.addEventListener("click", startGame);
 
 function timeCountdown() {
-  var timerInterval = setInterval(function () {
-    timerEl.textContent = timer;
-    timer--;
+  timer--;
+  timerEl.textContent = timer;
 
-    if (timer === 0) {
-      clearInterval(timerInterval);
-    }
-    // else {
-    //   timer++;
-    //   console.log(timerInterval);
-    // }
-
-  }, 1000);
+  if (timer <= 0) {
+    console.log("timer", timer);
+  }
 }
 
+if (highscore !== null) {
+  if (score > localStorage.setItem("highscore", score)) {
+    localStorage.setItem("highscore", score);
+  }
+} else {
+  localStorage.setItem("highscore", score);
+  console.log("Your Highscore is" + score);
+}
 
-
-
-
-
-containerEl.addEventListener('click', function (event) {
-
-  if (event.target.matches('li')) {
+containerEl.addEventListener("click", function (event) {
+  if (event.target.matches("li")) {
     var currentQuestion = questions[currentQuestionIndex];
     var userGuess = event.target.textContent;
+
     console.log(userGuess);
 
     if (userGuess === currentQuestion.answer) {
-      console.log('You guessed right!');
-       
-      };
-      // increase score
-      //play sounds (bonus)
-      // modify timer
-    
+      console.log("You guessed right!");
     } else {
-      console.log('You guessed wrong!');
+      console.log("You guessed wrong!");
     }
-
-    currentQuestionIndex++;
-    renderCurrentQuestion();
   }
-);
 
-// document.querySelector('.start').addEventListener.questions();
+  currentQuestionIndex++;
+  renderCurrentQuestion();
+});
+
+// start.addEventListener.questions("click", highscore);

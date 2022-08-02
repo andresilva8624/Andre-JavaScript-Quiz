@@ -66,16 +66,19 @@ button:hover{
     font-size: x-large;
 
 }
+.hide {
+  display: none;
+}
 
 .info_box {
-    display:none;
+    display:column;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width:650px;
-    background:azure;
-    color:darkslategray;
+    background:darkslategray;
+    color:azure;
     border-radius: 5px;
     padding:20px azure;
 }
@@ -83,7 +86,7 @@ button:hover{
 height: 60px;
 align-items: center;
 padding: 0 35px;
-font-size:25px;
+font-size:40px;
 font-weight: 600;
 
 }
@@ -92,7 +95,7 @@ font-weight: 600;
 padding: 15px 35px;
 justify-content: center;
 align-items: center;
-display: flex;
+display: column;
 
 }
 .info_box .info-list .info {
@@ -102,7 +105,9 @@ font-size:17px;
 }
 .info_box .info-list .info span {
 font-weight: 600;
-color:darkcyan;     
+color:rgb(73, 212, 212);     
+font-size: 120%;
+text-decoration: underline;
 
 }
 
