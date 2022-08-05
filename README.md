@@ -1,7 +1,7 @@
-# Quiz Challenge
+# JavaScript Quiz Challenge
 
 
-The goal of the project was to create a JavaScript Quiz Challenge with a timer, buttons and also a highscore. The user has option to start the quiz or quit, the quiz explains the rules before start. There's 5 questions with  multiple answers. The Highscore appears once the game is over.
+The goal of the project was to create a JavaScript Quiz Challenge with a timer, buttons and also a highscore. The user has option to start the quiz or quit, the quiz explains the rules before start. There's 5 questions with multiple choice answers. The Highscore appears once the game is over. Enjoy!😉
 
 
 - [Installation](#installation)
@@ -16,7 +16,7 @@ Clone the repository to your local machine and open the index.html file in your 
 
 ## Usage
 
-[Deployed Site](https://andresilva8624.github.io/quiz-challenge/)
+[Deployed Site](https://andresilva8624.github.io/Andre-JavaScript-Quiz/)
 
 ![gif of deployed site](./Assets/images/website.gif)
    
