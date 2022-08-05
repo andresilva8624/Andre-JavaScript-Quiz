@@ -1,17 +1,19 @@
 var startBtn = document.querySelector(".start");
+var quitBtn = document.querySelector(".quit");
+var quitGame = document.querySelector(".quit");
 var timerEl = document.querySelector(".timer");
 var timerInterval;
 var containerEl = document.querySelector(".container");
 var info_box = document.querySelector(".info_box");
 var start = document.querySelector(".start");
 var index = 0;
-var interval = 100;
+// var interval = 1000;
 var timer = 60;
+var initials = [];
 var continueBtn = document.querySelector(".restart");
 var currentQuestionIndex = 0;
 var startPageEl = document.querySelector(".start-page");
 var score = 0;
-var highscore = 0;
 
 var questions = [
   {
@@ -51,6 +53,26 @@ var questions = [
   },
 ];
 
+function startGame() {
+  timerInterval = setInterval(timeCountdown, 1000);
+  timerEl.textContent = timer;
+  info_box.classList.remove("hide");
+}
+
+// function countDown() {
+//   var count = 15;
+//   var interval = setInterval(function () {
+//     document.getElementById("count").innerHTML = count--;
+
+//     if (count === 0) {
+//       clearInterval(interval);
+//       document.getElementById("count").innerHTML = "Done";
+//       // or...
+//       alert("You're out of time!");
+//     }
+//   }, 1000);
+// }
+
 function gameOver() {
   clearInterval(timerInterval);
   console.log("gameOver");
@@ -61,27 +83,24 @@ function gameOver() {
   var formEl = document.createElement("form");
   var inputEl = document.createElement("input");
   var buttonEl = document.createElement("button");
+  formEl.append(inputEl, buttonEl);
   buttonEl.textContent = "Submit";
-  buttonEl.type = "submit";
+  // buttonEl.type = "click";
   var pEl = document.createElement("p");
   pEl.textContent = "Your score is: " + timer;
-
-  inputEl.type = "text";
-  inputEl.placeholder = "Enter your initials";
-}
-
-function startGame() {
-  timerInterval = setInterval(timeCountdown, 1000);
-  timerEl.textContent = timer;
-  info_box.classList.remove("hide");
+  var initialsEl = document.createElement("p");
+  initialsEl.textContent = "Please enter your initials";
+  containerEl.append(pEl, initialsEl, inputEl, buttonEl);
 }
 
 continueBtn.addEventListener("click", function () {
   startPageEl.setAttribute("class", "hide");
   info_box.setAttribute("class", "hide");
+  // timerEl.setAttribute("class", "hide");
   containerEl.classList.remove("hide");
 
   renderCurrentQuestion();
+  console.log(timer);
 });
 
 function renderCurrentQuestion() {
@@ -103,10 +122,12 @@ function renderCurrentQuestion() {
     var liEl = document.createElement("li");
     liEl.textContent = currentQuestions.options[i];
     ulEl.appendChild(liEl);
+    containerEl.appendChild(ulEl);
   }
-  containerEl.appendChild(ulEl);
 }
 startBtn.addEventListener("click", startGame);
+
+quitBtn.addEventListener("click", quitGame);
 
 function timeCountdown() {
   timer--;
@@ -114,17 +135,33 @@ function timeCountdown() {
 
   if (timer <= 0) {
     console.log("timer", timer);
+    gameOver();
   }
 }
 
-if (highscore !== null) {
-  if (score > localStorage.setItem("highscore", score)) {
-    localStorage.setItem("highscore", score);
-  }
-} else {
-  localStorage.setItem("highscore", score);
-  console.log("Your Highscore is" + score);
+// var stopInterval = function() {
+//   console.log('time is up!');
+//   clearInterval(timer);
+// }
+
+function saveHighscore() {
+  alert = "About to save score";
+  var initialsValue = document.querySelector("input").value;
+  var highscore =
+    ((initials = initialsValue.trim()),
+    currentHighscore.push(highscore),
+    localStorage.setItem("currentHighscore", JSON.stringify(currentHighscore)));
+  console.log("saveHighscore");
 }
+
+// if (highscore !== null) {
+//   if (score > localStorage.setItem("highscore", score)) {
+//     localStorage.setItem("highscore", score);
+//   }
+// } else {
+//   localStorage.setItem("highscore", score);
+//   console.log("Your Highscore is" + score);
+// }
 
 containerEl.addEventListener("click", function (event) {
   if (event.target.matches("li")) {
@@ -133,10 +170,15 @@ containerEl.addEventListener("click", function (event) {
 
     console.log(userGuess);
 
-    if (userGuess === currentQuestion.answer) {
-      console.log("You guessed right!");
-    } else {
+    if (userGuess !== currentQuestion.answer) {
       console.log("You guessed wrong!");
+      timer -= 5;
+      timerEl.textContent = timer;
+      if (timer <= 0) {
+        gameOver();
+      }
+    } else {
+      console.log("You guessed right!");
     }
   }
 
@@ -144,4 +186,4 @@ containerEl.addEventListener("click", function (event) {
   renderCurrentQuestion();
 });
 
-// start.addEventListener.questions("click", highscore);
+// startBtn.addEventListener.currentquestion("click", highscore);
