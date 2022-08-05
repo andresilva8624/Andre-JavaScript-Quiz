@@ -1,6 +1,5 @@
 var startBtn = document.querySelector(".start");
 var quitBtn = document.querySelector(".quit");
-var quitGame = document.querySelector(".quit");
 var timerEl = document.querySelector(".timer");
 var timerInterval;
 var containerEl = document.querySelector(".container");
@@ -54,8 +53,7 @@ var questions = [
 ];
 
 function startGame() {
-  timerInterval = setInterval(timeCountdown, 1000);
-  timerEl.textContent = timer;
+  startPageEl.classList.add("hide");
   info_box.classList.remove("hide");
 }
 
@@ -76,65 +74,57 @@ function startGame() {
 function gameOver() {
   clearInterval(timerInterval);
   console.log("gameOver");
-  containerEl.innerHTML = "";
-  var header = document.createElement("h2");
-  header.textContent = "The Game is OVER!";
-  containerEl.appendChild(header);
-  var formEl = document.createElement("form");
-  var inputEl = document.createElement("input");
-  var buttonEl = document.createElement("button");
-  formEl.append(inputEl, buttonEl);
-  buttonEl.textContent = "Submit";
-  // buttonEl.type = "click";
-  var pEl = document.createElement("p");
-  pEl.textContent = "Your score is: " + timer;
-  var initialsEl = document.createElement("p");
-  initialsEl.textContent = "Please enter your initials";
-  containerEl.append(pEl, initialsEl, inputEl, buttonEl);
+  containerEl.classList.add("hide");
+  document.querySelector("header").classList.add("hide");
+  document.querySelector(".gameover").classList.remove("hide");
+  document.querySelector(".final-score").textContent = timer;
 }
 
 continueBtn.addEventListener("click", function () {
+  timerInterval = setInterval(timeCountdown, 1000);
+  timerEl.textContent = timer;
   startPageEl.setAttribute("class", "hide");
   info_box.setAttribute("class", "hide");
-  // timerEl.setAttribute("class", "hide");
-  containerEl.classList.remove("hide");
+  document.querySelector("header").classList.remove("hide");
 
   renderCurrentQuestion();
-  console.log(timer);
 });
 
 function renderCurrentQuestion() {
   if (currentQuestionIndex > 4) {
     gameOver();
-    return;
-  }
+  } else {
+    containerEl.innerHTML = "";
+    var currentQuestions = questions[currentQuestionIndex];
 
-  containerEl.innerHTML = "";
-  var currentQuestions = questions[currentQuestionIndex];
+    var headerEl = document.createElement("h2");
+    headerEl.textContent = currentQuestions.question;
+    containerEl.appendChild(headerEl);
 
-  var header = document.createElement("h2");
-  header.textContent = currentQuestions.question;
-  containerEl.appendChild(header);
+    var ulEl = document.createElement("ul");
 
-  var ulEl = document.createElement("ul");
-
-  for (var i = 0; i < currentQuestions.options.length; i++) {
-    var liEl = document.createElement("li");
-    liEl.textContent = currentQuestions.options[i];
-    ulEl.appendChild(liEl);
-    containerEl.appendChild(ulEl);
+    for (var i = 0; i < currentQuestions.options.length; i++) {
+      var liEl = document.createElement("li");
+      liEl.textContent = currentQuestions.options[i];
+      ulEl.appendChild(liEl);
+      containerEl.appendChild(ulEl);
+    }
   }
 }
 startBtn.addEventListener("click", startGame);
 
 quitBtn.addEventListener("click", quitGame);
 
+function quitGame() {
+  info_box.classList.add("hide");
+  startPageEl.classList.remove("hide");
+}
+
 function timeCountdown() {
   timer--;
   timerEl.textContent = timer;
 
   if (timer <= 0) {
-    console.log("timer", timer);
     gameOver();
   }
 }
@@ -145,14 +135,28 @@ function timeCountdown() {
 // }
 
 function saveHighscore() {
-  alert = "About to save score";
-  var initialsValue = document.querySelector("input").value;
-  var highscore =
-    ((initials = initialsValue.trim()),
-    currentHighscore.push(highscore),
-    localStorage.setItem("currentHighscore", JSON.stringify(currentHighscore)));
-  console.log("saveHighscore");
+  var initialsValue = document.querySelector("#input").value;
+  if (initialsValue !== "") {
+    var highscore = JSON.parse(localStorage.getItem("highscore")) || [];
+    console.log(highscore);
+    var newscore = {
+      score: timer,
+      initials: initialsValue,
+    };
+    console.log(newscore)
+    highscore.push(newscore);
+    console.log(highscore);
+    localStorage.setItem("highscore", JSON.stringify(highscore));
+    window.location.href = "score.html";
+  }
 }
+document.querySelector(".saveBtn").addEventListener("click", saveHighscore);
+//   var highscore =
+//     ((initials = initialsValue.trim()),
+//     currentHighscore.push(highscore),
+//     localStorage.setItem("currentHighscore", JSON.stringify(currentHighscore)));
+//   console.log("saveHighscore");
+// }
 
 // if (highscore !== null) {
 //   if (score > localStorage.setItem("highscore", score)) {

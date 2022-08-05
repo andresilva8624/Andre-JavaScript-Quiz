@@ -10,13 +10,13 @@
   </head>
   <body>
     <main class="content" id="content">
-      <p>
-        Timer:
-        <span class="timer" id="timer">0</span>
-      </p>
-      <section class="container hide" id="container">
-       
-      </section>
+      <header class="hide">
+        <p>
+          Timer:
+          <span class="timer" id="timer">0</span>
+        </p>
+      </header>
+      <section class="container" id="container"></section>
 
       <div class="start-page">
         <h1>Welcome to the Quiz!</h1>
@@ -48,7 +48,12 @@
           <button class="restart">Continue</button>
         </div>
       </div>
-      <div class="gameover hide"></div>
+      <div class="gameover hide" >
+        <p>The Game is Over!</p>
+        <p>Your score is: <span class="final-score"></span></p>
+        <input type="text" id="input" placeholder="Please enter your initials">
+        <button class="saveBtn">Submit</button>
+      </div>
     </main>
 
     <script src="./Assets/js/script.js"></script>
