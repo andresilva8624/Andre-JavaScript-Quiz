@@ -6,7 +6,6 @@ var containerEl = document.querySelector(".container");
 var info_box = document.querySelector(".info_box");
 var start = document.querySelector(".start");
 var index = 0;
-// var interval = 1000;
 var timer = 60;
 var initials = [];
 var continueBtn = document.querySelector(".restart");
@@ -56,20 +55,6 @@ function startGame() {
   startPageEl.classList.add("hide");
   info_box.classList.remove("hide");
 }
-
-// function countDown() {
-//   var count = 15;
-//   var interval = setInterval(function () {
-//     document.getElementById("count").innerHTML = count--;
-
-//     if (count === 0) {
-//       clearInterval(interval);
-//       document.getElementById("count").innerHTML = "Done";
-//       // or...
-//       alert("You're out of time!");
-//     }
-//   }, 1000);
-// }
 
 function gameOver() {
   clearInterval(timerInterval);
@@ -129,11 +114,6 @@ function timeCountdown() {
   }
 }
 
-// var stopInterval = function() {
-//   console.log('time is up!');
-//   clearInterval(timer);
-// }
-
 function saveHighscore() {
   var initialsValue = document.querySelector("#input").value;
   if (initialsValue !== "") {
@@ -143,7 +123,7 @@ function saveHighscore() {
       score: timer,
       initials: initialsValue,
     };
-    console.log(newscore)
+    console.log(newscore);
     highscore.push(newscore);
     console.log(highscore);
     localStorage.setItem("highscore", JSON.stringify(highscore));
@@ -151,22 +131,6 @@ function saveHighscore() {
   }
 }
 document.querySelector(".saveBtn").addEventListener("click", saveHighscore);
-//   var highscore =
-//     ((initials = initialsValue.trim()),
-//     currentHighscore.push(highscore),
-//     localStorage.setItem("currentHighscore", JSON.stringify(currentHighscore)));
-//   console.log("saveHighscore");
-// }
-
-// if (highscore !== null) {
-//   if (score > localStorage.setItem("highscore", score)) {
-//     localStorage.setItem("highscore", score);
-//   }
-// } else {
-//   localStorage.setItem("highscore", score);
-//   console.log("Your Highscore is" + score);
-// }
-
 containerEl.addEventListener("click", function (event) {
   if (event.target.matches("li")) {
     var currentQuestion = questions[currentQuestionIndex];
@@ -189,5 +153,3 @@ containerEl.addEventListener("click", function (event) {
   currentQuestionIndex++;
   renderCurrentQuestion();
 });
-
-// startBtn.addEventListener.currentquestion("click", highscore);

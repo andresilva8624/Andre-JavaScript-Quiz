@@ -17,6 +17,33 @@ body {
   text-transform: uppercase;
   list-style: none;
 }
+.order {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: column;
+  background-color: darkslategray;
+  border-radius: 25px;
+  margin: 20px;
+  padding: 20px;
+  text-align: center;
+  color: azure;
+  text-transform: uppercase;
+  list-style: none;
+
+}
+.order h1{
+font-size: xxx-large;
+  font-weight: 600;
+font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+.order li{
+  font-size: x-large;
+  list-style:decimal;
+  margin: 20px;
+}
+
 
 .content h1{
 font-weight: 600;
