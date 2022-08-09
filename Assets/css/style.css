@@ -16,6 +16,7 @@ body {
   color: azure;
   text-transform: uppercase;
   list-style: none;
+  text-decoration: none;
 }
 .order {
   position: absolute;
@@ -31,111 +32,130 @@ body {
   color: azure;
   text-transform: uppercase;
   list-style: none;
-
 }
-.order h1{
-font-size: xxx-large;
+.order h1 {
+  font-size: xxx-large;
   font-weight: 600;
-font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
-.order li{
+.order li {
   font-size: x-large;
-  list-style:decimal;
+  list-style: decimal;
   margin: 20px;
 }
 
-
-.content h1{
-font-weight: 600;
-font-family:Arial, Helvetica, sans-serif;
-
+.content h1 {
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .content .container .timer {
-font-weight: 800;
+  font-weight: 800;
 }
-p{
-    font-size: xx-large;
-
+p {
+  font-size: xx-large;
 }
 .container p text {
-
-font-size: 200%;
-font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 200%;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 .start {
-    cursor:pointer;
-    background-color:darkcyan;
-    color: azure;
-    font-size: xx-large;
-    font-weight: 500;
-    border-radius: 10px;
-    margin: 20px;
-    padding: 20px;
+  cursor: pointer;
+  background-color: darkcyan;
+  color: azure;
+  font-size: xx-large;
+  font-weight: 500;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
 }
-button{
-    cursor:pointer;
-    background-color:darkcyan;
-    color: azure;
-    font-size: x-large;
-    font-weight: 500;
-    border-radius: 10px;
-    margin: 10px;
-    padding: 10px;
+button {
+  cursor: pointer;
+  background-color: darkcyan;
+  color: azure;
+  font-size: x-large;
+  font-weight: 500;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
 }
-button:hover{
-
-    background-color: rgb(70, 168, 168);
-    color:azure;
+button#clear-hs {
+  cursor: pointer;
+  background-color: darkslategrey;
+  color: azure;
+  font-size: x-large;
+  font-weight: 500;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
 }
-.text{
 
-    font-size: x-large;
+button#clear-hs:hover {
+  background-color: rgb(70, 168, 168);
+  color: azure;
+}
+button#go-back {
+  cursor: pointer;
+  background-color: darkslategrey;
+  color: azure;
+  font-size: x-large;
+  font-weight: 500;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+}
 
+button#go-back:hover {
+  background-color: rgb(70, 168, 168);
+  color: azure;
+}
+button:hover {
+  background-color: rgb(70, 168, 168);
+  color: azure;
+}
+.text {
+  font-size: x-large;
 }
 .hide {
   display: none;
 }
 
 .info_box {
-    display:column;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width:650px;
-    background:darkslategray;
-    color:azure;
-    border-radius: 5px;
-    padding:20px azure;
+  display: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 650px;
+  background: darkslategray;
+  color: azure;
+  border-radius: 5px;
+  padding: 20px azure;
 }
-.info_box .info-title { 
-height: 60px;
-align-items: center;
-padding: 0 35px;
-font-size:40px;
-font-weight: 600;
-
+.info_box .info-title {
+  height: 60px;
+  align-items: center;
+  padding: 0 35px;
+  font-size: 40px;
+  font-weight: 600;
 }
 
 .info_box .info-list {
-padding: 15px 35px;
-justify-content: center;
-align-items: center;
-display: column;
-
+  padding: 15px 35px;
+  justify-content: center;
+  align-items: center;
+  display: column;
 }
 .info_box .info-list .info {
-margin: 5px 0;
-font-size:17px;
-
+  margin: 5px 0;
+  font-size: 17px;
 }
 .info_box .info-list .info span {
-font-weight: 600;
-color:rgb(73, 212, 212);     
-font-size: 120%;
-text-decoration: underline;
-
+  font-weight: 600;
+  color: rgb(73, 212, 212);
+  font-size: 120%;
+  text-decoration: underline;
 }
 
 ul {
@@ -161,38 +181,53 @@ ul li:hover {
 }
 
 .info_box .buttons .quit {
-    cursor:pointer;
-    background-color:azure;
-    color:darkcyan ;
-    font-size: x-large;
-    font-weight: 500;
-    border-radius: 10px;
-    margin: 20px;
-    padding: 20px;
+  cursor: pointer;
+  background-color: azure;
+  color: darkcyan;
+  font-size: x-large;
+  font-weight: 500;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
 }
 
-.info_box .buttons .quit:hover{
-    background-color:darkcyan;
-    color: azure;
-   
-
-
+.info_box .buttons .quit:hover {
+  background-color: darkcyan;
+  color: azure;
 }
-.info_box .buttons .restart{
-    cursor:pointer;
-    background-color:darkcyan;
-    color: azure;
-    font-size: x-large;
-    font-weight: 500;
-    border-radius: 10px;
-    margin: 20px;
-    padding: 20px;
+.info_box .buttons .restart {
+  cursor: pointer;
+  background-color: darkcyan;
+  color: azure;
+  font-size: x-large;
+  font-weight: 500;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
 }
 
-.info_box .buttons .restart:hover{
+.info_box .buttons .restart:hover {
+  background-color: rgb(0, 94, 94);
+  color: azure;
+}
 
-    background-color:rgb(0, 94, 94);
-    color: azure;
+.start-page a {
+  text-decoration: none;
 
+}
+.start-page p {
+  position: relative;
+  cursor: pointer;
+  color: azure;
+  background-color: darkcyan;
+  font-size: x-large;
+  font-weight: 500;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
  
+}
+.start-page p:hover {
+  background-color: rgb(70, 168, 168);
+  color: azure;
 }

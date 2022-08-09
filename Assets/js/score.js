@@ -1,3 +1,8 @@
+var clearHighscore = document.querySelector("#clear-hs");
+
+
+
+
 function highscore() {
   var highscore = JSON.parse(localStorage.getItem("highscore")) || [];
   highscore.sort(function (a, b) {
@@ -9,5 +14,12 @@ function highscore() {
     document.querySelector(".order").appendChild(liEl);
   }
 }
+function clearScores(){
+  localStorage.removeItem("highscore")
+  window.location.reload();
+}
 
 highscore();
+
+
+clearHighscore.addEventListener('click', clearScores);

@@ -1,7 +1,7 @@
 # JavaScript Quiz Challenge
 
+The goal of the project was to create a JavaScript Quiz Challenge with a timer, buttons and also a highscore. The user has option to start the quiz or quit, the quiz explains the rules before start. There's 5 questions with multiple choice answers. The Highscore appears once the game is over. Enojy!😉
 
-The goal of the project was to create a JavaScript Quiz Challenge with a timer, buttons and also a highscore. The user has option to start the quiz or quit, the quiz explains the rules before start. There's 5 questions with multiple choice answers. The Highscore appears once the game is over. Enjoy!😉
 
 
 - [Installation](#installation)
