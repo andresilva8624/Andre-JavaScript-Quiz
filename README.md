@@ -16,7 +16,7 @@ Clone the repository to your local machine and open the index.html file in your 
 
 ## Usage
 
-[Deployed Site](https://andresilva8624.github.io/Andre-Javascript-Quiz/)
+[Deployed Site](https://andresilva8624.github.io/Andre-JavaScript-Quiz/)
 
 ![gif of deployed site](./Assets/images/website.gif)
    
